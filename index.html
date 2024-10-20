@@ -62,12 +62,16 @@
 
     <script>
         function connectToTikTok() {
-            const clientId = 'awgwkcmj03d26unf';
-            const redirectUri = 'https://my-tiktok-app.netlify.app/callback'; // Update with your actual callback URL
-            const state = 'yourUniqueState'; // CSRF protection
+            const clientId = 'yourClientID'; // Update with your TikTok client ID
+            const redirectUri = 'https://my-tiktok-app.netlify.app/callback'; // Update with your callback URL
+
+            // Generate a random state for CSRF protection
+            const state = Math.random().toString(36).substring(2);
+            localStorage.setItem('oauthState', state); // Store state to verify later
 
             const authUrl = `https://open.tiktok.com/platform/oauth/connect/?client_key=${clientId}&scope=user.info.basic&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}`;
             
+            // Redirect to TikTok for authorization
             window.location.href = authUrl;
         }
     </script>
