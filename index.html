@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TikTok API Test App">
+    <title>TikTok API Test App!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        p {
+            font-size: 18px;
+        }
+        button {
+            background-color: #1DA1F2;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0d8ae3;
+        }
+        a {
+            color: #1DA1F2;
+            text-decoration: none;
+            margin: 20px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            position: absolute;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to TikTok API Test App</h1>
+    <p>Click the button below to authenticate with TikTok:</p>
+    <button onclick="connectToTikTok()">Connect with TikTok</button>
+
+    <footer>
+        <p><a href="terms.html">Terms of Service</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        function connectToTikTok() {
+            const clientId = 'awgwkcmj03d26unf';
+            const redirectUri = 'https://my-tiktok-app.netlify.app/callback'; // Update with your actual callback URL
+            const state = 'yourUniqueState'; // CSRF protection
+
+            const authUrl = `https://open.tiktok.com/platform/oauth/connect/?client_key=${clientId}&scope=user.info.basic&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&state=${state}`;
+            
+            window.location.href = authUrl;
+        }
+    </script>
+</body>
+</html>
